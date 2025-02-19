@@ -1,0 +1,45 @@
+const HomeModel = require('../models/homeModel');
+
+// exports.getHome = (req, res, next) => {
+//     res.render('home', {pageTitle: "Welcom Bilal Shop"});
+// }
+
+exports.getHomes = (req, res, next) => {
+    HomeModel.getFatch((registeredHomes) => {
+        res.render('home', {pageTitle: "Bilal Shop", registeredHomes: registeredHomes});
+    })
+}
+exports.getHomeFromDb = (req, res, next) => {
+    HomeModel.getFatchFromDb().then( (homeLists) => {
+        res.render('home', {pageTitle: "Bilal Shop from DB", homeLists: homeLists});
+    }).catch(err => console.log(err));
+}
+
+exports.getAbout = (req, res, next) => {
+    HomeModel.getMovieList().then((movieList) => {
+        res.render('about', {pageTitle: "About Bilal", movieLists: movieList});
+    }).catch(err => console.log(err));
+   
+}
+
+exports.getContact = (req, res, next) => {
+    res.render('contact', {pageTitle: "Add Product to Bilal Shop"});
+}
+
+exports.postContact = (req, res, next) => {
+    const {name, price, imgUrl, category} = req.body;
+    const product = new HomeModel(name, price, imgUrl, category);
+    product.saveMongoDb();
+    res.redirect('/');
+}
+// exports.postContactLocal = (req, res, next) => {
+//     console.log(req.body);
+//     const {name, price, imgUrl, category} = req.body;
+//     const product = new HomeModel(name, price, imgUrl, category);
+//     product.save();
+//     res.redirect('/');
+// }
+
+exports.getService = (req, res, next) => {
+    res.render('service', {pageTitle: "Service Bilal"});
+}
