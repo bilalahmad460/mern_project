@@ -1,7 +1,5 @@
 // const mongo = require("mongodb");
 // const mongoClient = mongo.MongoClient;
-// const dbUrl = "mongodb+srv://baky:baky@123@mernstack-db.fdx1i.mongodb.net/?retryWrites=true&w=majority&appName=mernstack-db";
-
 // let _db;
 // const dbConnection = (callback) => {
 //     mongoClient.connect(dbUrl).then( client => {
