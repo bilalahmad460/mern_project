@@ -26,7 +26,8 @@
 
 const mongo = require("mongodb");
 const MongoClient = mongo.MongoClient;
-const MONGODB_URL = "mongodb+srv://baky:root12@billalmerndb.fdx1i.mongodb.net/?retryWrites=true&w=majority&appName=billalmerndb";
+// const MONGODB_URL = "motryWrites=true&w=majority&appName=billalmerndb";
+const MONGODB_URL = "mongodb://admin:admin@localhost:27017/";
 
 let mongo_db;
 
@@ -34,7 +35,7 @@ const mongoDbConfig = (callback) => {
     MongoClient.connect(MONGODB_URL)
         .then( client => {
             callback(client);
-            mongo_db = client.db("sample_mflix");
+            mongo_db = client.db("bilala-mongodb");
         }).catch( (err) => {
         console.log("Error in connection", err);
     });
